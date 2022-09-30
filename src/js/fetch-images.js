@@ -5,7 +5,7 @@ const axios = require('axios');
 export async function fetchImages(name) {
   try {
     const response = await axios.get(
-      `${BASE_URL}?key=${API_KEY}&q=${name}&image_type=photo&orientation=horizontal&safesearch=true`
+      `${BASE_URL}?key=${API_KEY}&q=${name}&image_type=photo&orientation=horizontal&safesearch=true&page=1&per_page=40`
     );
 
     console.log(response);
@@ -15,14 +15,3 @@ export async function fetchImages(name) {
     console.error(error);
   }
 }
-
-// export function fetchImages(name) {
-//   return fetch(
-//     `${BASE_URL}/${name}?fields=name,capital,population,flags,languages`
-//   ).then(response => {
-//     if (!response.ok) {
-//       throw new Error(response.status);
-//     }
-//     return response.json();
-//   });
-// }
