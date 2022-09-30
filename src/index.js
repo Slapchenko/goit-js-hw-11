@@ -5,6 +5,7 @@ import getRefs from './js/get-refs';
 const refs = getRefs();
 
 refs.form.addEventListener('submit', onSearch);
+refs.loadMoreBtn.addEventListener('click', onLoadMore);
 
 function onSearch(e) {
   e.preventDefault();
@@ -23,3 +24,5 @@ function onSearch(e) {
     })
     .catch(error => console.log(error));
 }
+
+function onLoadMore() {}
