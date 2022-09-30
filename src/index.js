@@ -1,28 +1,36 @@
-import { fetchImages } from './js/fetch-images';
+import ImgApiService from './js/img-servise';
 import { renderImages } from './js/render-images';
 import getRefs from './js/get-refs';
 
 const refs = getRefs();
+const imgApiService = new ImgApiService();
 
 refs.form.addEventListener('submit', onSearch);
-refs.loadMoreBtn.addEventListener('click', onLoadMore);
+refs.loadMoreBtn.addEventListener('click', fetchImages);
 
 function onSearch(e) {
   e.preventDefault();
 
-  let searchQuery = refs.input.value.trim();
+  imgApiService.query = refs.input.value.trim();
+  imgApiService.resetPage();
+  clearGallery();
+  fetchImages();
+}
 
-  fetchImages(searchQuery)
-    .then(result => {
-      if (result.data.hits.length === 0) {
+function fetchImages() {
+  imgApiService
+    .fetchImages()
+    .then(images => {
+      if (images.data.hits.length === 0) {
         console.log(
           'Sorry, there are no images matching your search query. Please try again.'
         );
       }
-
-      renderImages(result);
+      renderImages(images);
     })
     .catch(error => console.log(error));
 }
 
-function onLoadMore() {}
+function clearGallery() {
+  refs.gallery.innerHTML = '';
+}

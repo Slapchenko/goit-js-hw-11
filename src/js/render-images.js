@@ -4,6 +4,7 @@ const refs = getRefs();
 
 export function renderImages(images) {
   console.log(images.data.hits);
+
   const markup = images.data.hits
     .map(image => {
       return `<div class="photo-card">
@@ -29,5 +30,7 @@ export function renderImages(images) {
     </div>`;
     })
     .join('');
-  refs.gallery.innerHTML = markup;
+
+  refs.gallery.insertAdjacentHTML('beforeend', markup);
+  //   refs.gallery.innerHTML = markup;
 }
