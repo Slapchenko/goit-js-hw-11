@@ -43,6 +43,12 @@ async function fetchImages() {
         return Notiflix.Notify.warning(`The field must not be empty!`);
       }
 
+      if (imgApiService.page === 2) {
+        Notiflix.Notify.success(
+          `Hooray! We found ${images.data.totalHits} images.`
+        );
+      }
+
       if (imgApiService.page === 14) {
         loadMoreBtn.hide();
         Notiflix.Notify.info(
