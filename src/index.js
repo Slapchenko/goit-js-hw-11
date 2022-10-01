@@ -30,7 +30,7 @@ async function fetchImages() {
     .fetchImages()
     .then(images => {
       loadMoreBtn.show();
-      console.log(`Приехало картинок:`, images.data.hits.length);
+
       if (images.data.hits.length === 0) {
         loadMoreBtn.hide();
         return Notiflix.Notify.failure(
@@ -40,7 +40,7 @@ async function fetchImages() {
 
       if (imgApiService.searchQuery === '') {
         loadMoreBtn.hide();
-        return Notiflix.Notify.warning(`введите данные`);
+        return Notiflix.Notify.warning(`The field must not be empty!`);
       }
 
       if (imgApiService.page === 14) {

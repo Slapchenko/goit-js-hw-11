@@ -16,8 +16,6 @@ export default class ImgApiService {
 
       this.incrementPage();
 
-      console.log(response);
-
       return response;
     } catch (error) {
       console.error(error);
