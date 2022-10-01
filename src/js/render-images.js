@@ -3,8 +3,6 @@ import getRefs from './get-refs';
 const refs = getRefs();
 
 export function renderImages(images) {
-  console.log(images.data.hits);
-
   const markup = images.data.hits
     .map(image => {
       return `<div class="photo-card">
@@ -32,5 +30,4 @@ export function renderImages(images) {
     .join('');
 
   refs.gallery.insertAdjacentHTML('beforeend', markup);
-  //   refs.gallery.innerHTML = markup;
 }

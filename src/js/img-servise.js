@@ -40,25 +40,3 @@ export default class ImgApiService {
     this.searchQuery = newQuery;
   }
 }
-
-// fetchArticles() {
-//   const url = `${BASE_URL}/everything?q=${this.searchQuery}&language=en&pageSize=5&page=${this.page}`;
-
-//   return fetch(url, options)
-//     .then(response => response.json())
-//     .then(({ articles }) => {
-//       this.incrementPage();
-//       return articles;
-//     });
-// }
-
-// export async function fetchImages(name) {
-//   try {
-//     return response = await axios.get(
-//       `${BASE_URL}?key=${API_KEY}&q=${name}&image_type=photo&orientation=horizontal&safesearch=true&page=1&per_page=40`
-//     );
-
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }

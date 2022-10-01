@@ -58,3 +58,13 @@ img {
   text-align: center;
   line-height: 1;
 }
+
+.btn-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 15px;
+}
+
+.is-hidden {
+  display: none;
+}
