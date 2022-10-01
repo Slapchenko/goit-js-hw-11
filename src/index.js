@@ -19,6 +19,7 @@ async function onSearch(e) {
 
   imgApiService.query = refs.input.value.trim();
 
+  loadMoreBtn.hide();
   imgApiService.resetPage();
   clearGallery();
   fetchImages();
