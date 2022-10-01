@@ -3,7 +3,6 @@ import LoadMoreBtn from './js/load-more-btn';
 import { renderImages } from './js/render-images';
 import getRefs from './js/get-refs';
 import Notiflix from 'notiflix';
-import SimpleLightbox from 'simplelightbox';
 import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = getRefs();
@@ -31,7 +30,10 @@ async function fetchImages() {
   imgApiService
     .fetchImages()
     .then(images => {
-      const totalPages = Math.ceil(images.data.totalHits / 40);
+      const totalPages = Math.ceil(
+        images.data.totalHits / imgApiService.perPage
+      );
+
       loadMoreBtn.show();
 
       if (images.data.hits.length === 0) {
@@ -47,9 +49,7 @@ async function fetchImages() {
       }
 
       if (imgApiService.page === 2) {
-        Notiflix.Notify.success(
-          `Hooray! We found ${images.data.totalHits} images.`
-        );
+        Notiflix.Notify.success(` ! We found ${images.data.totalHits} images.`);
       }
 
       if (imgApiService.page > totalPages) {
