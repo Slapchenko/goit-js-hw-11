@@ -49,7 +49,9 @@ async function fetchImages() {
       }
 
       if (imgApiService.page === 2) {
-        Notiflix.Notify.success(` ! We found ${images.data.totalHits} images.`);
+        Notiflix.Notify.success(
+          `Hooray! We found ${images.data.totalHits} images.`
+        );
       }
 
       if (imgApiService.page > totalPages) {
