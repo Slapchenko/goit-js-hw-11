@@ -58,6 +58,10 @@ async function fetchImages() {
         );
       }
 
+      if (images.data.totalHits < 40) {
+        loadMoreBtn.hide();
+      }
+
       renderImages(images);
     })
     .catch(error => console.log(error));
