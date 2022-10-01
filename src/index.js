@@ -31,6 +31,7 @@ async function fetchImages() {
   imgApiService
     .fetchImages()
     .then(images => {
+      const totalPages = Math.ceil(images.data.totalHits / 40);
       loadMoreBtn.show();
 
       if (images.data.hits.length === 0) {
@@ -51,15 +52,11 @@ async function fetchImages() {
         );
       }
 
-      if (imgApiService.page === 14) {
+      if (imgApiService.page > totalPages) {
         loadMoreBtn.hide();
         Notiflix.Notify.info(
           `We're sorry, but you've reached the end of search results.`
         );
-      }
-
-      if (images.data.totalHits < 40) {
-        loadMoreBtn.hide();
       }
 
       renderImages(images);
