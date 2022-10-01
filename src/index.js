@@ -3,6 +3,8 @@ import LoadMoreBtn from './js/load-more-btn';
 import { renderImages } from './js/render-images';
 import getRefs from './js/get-refs';
 import Notiflix from 'notiflix';
+import SimpleLightbox from 'simplelightbox';
+import 'simplelightbox/dist/simple-lightbox.min.css';
 
 const refs = getRefs();
 const loadMoreBtn = new LoadMoreBtn({
