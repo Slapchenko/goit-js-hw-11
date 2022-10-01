@@ -22,13 +22,13 @@ async function onSearch(e) {
   imgApiService.resetPage();
   clearGallery();
   fetchImages();
-  loadMoreBtn.show();
 }
 
-function fetchImages() {
+async function fetchImages() {
   imgApiService
     .fetchImages()
     .then(images => {
+      loadMoreBtn.show();
       console.log(`Приехало картинок:`, images.data.hits.length);
       if (images.data.hits.length === 0) {
         loadMoreBtn.hide();
@@ -37,9 +37,16 @@ function fetchImages() {
         );
       }
 
-      if (images.data.hits.length < 40) {
-        console.log(`последний запрос`);
+      if (imgApiService.searchQuery === '') {
         loadMoreBtn.hide();
+        return Notiflix.Notify.warning(`введите данные`);
+      }
+
+      if (imgApiService.page === 14) {
+        loadMoreBtn.hide();
+        Notiflix.Notify.info(
+          `We're sorry, but you've reached the end of search results.`
+        );
       }
 
       renderImages(images);
@@ -50,11 +57,3 @@ function fetchImages() {
 function clearGallery() {
   refs.gallery.innerHTML = '';
 }
-
-//   console.log(images.data.hits.length);
-//   if (images.data.hits.length < 200 && images.data.hits.length > 0) {
-//     loadMoreBtn.hide();
-//     return Notiflix.Notify.info(
-//       `We're sorry, but you've reached the end of search results.`
-//     );
-//   }
